@@ -1,13 +1,19 @@
 <template>
-  <div class="logo__frame" data-sticky="from: 0, duration: 100vh">
+  <div class="logo__frame" data-sticky="from: 0, duration: 300vh">
     <div
       class="rect__bg"
-      data-animation="transform : {40vh : scale(1), 100vh : scale(.9) }"
+      data-animation="transform : {40vh : scale(1), 100vh : scale(.9), 150vh : scale(.9), 200vh : scale(1) }"
     ></div>
 
     <div
       class="logo__holder"
-      data-animation="left : { 0vh : 50%, 50vh : 0% }, transform : {0vh : scale(1) translate(-50%, 0), 50vh : scale(1.3) translate(-50%, 0)}"
+      data-animation="
+      left : { 0vh : 50%, 50vh : 0% },
+      top : { 0vh : 50%, 100vh : 50%, 200vh : 0% },
+      transform : 
+       { 0vh : translate(-50%, -50%) scale(1), 
+       100vh : translate(-50%, -50%) scale(1), 
+       200vh : translate(0%, -22%) scale(.3)}"
     >
       <Logo />
     </div>
@@ -16,8 +22,8 @@
       class="hello__holder"
       data-classes="75vh : { add : active }"
       data-animation="
-        opacity : { 75vh : 0 , 100vh : 1 },
-        transform : { 70vh : translate(0,100px) , 100vh : translate(0,0) }
+        opacity : { 75vh : 0 , 100vh : 1, 150vh : 1, 200vh : 0 },
+        transform : { 70vh : translate(0,100px) , 100vh : translate(0,0), 150vh : translate(0,0), 200vh : translate(0,100px)  }
         "
     >
       <h2 class="content">Hello, We're</h2>
@@ -55,17 +61,20 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
+  position: absolute;
+  top: 0;
+  left: 0;
   .logo__holder {
     position: absolute;
     // background: red;
     left: 50%;
+    top: 50%;
     transform-origin: center;
     z-index: 1;
-    transform: translate(-50%, 0);
+    transform: translate(-50%, -50%);
     animation-name: fadeIn;
     animation-duration: 1s;
-    animation-fill-mode: forwards;
+    // animation-fill-mode: forwards;
   }
 }
 .hello__holder {
@@ -86,11 +95,10 @@ export default {
       opacity: 0;
       transform: translate(0, 40px);
 
-      // @for $i from 1 through 3 {
       animation-name: fadeUp;
       animation-fill-mode: forwards;
       animation-duration: 0.4s;
-      // }
+
       &:nth-child(2) {
         animation-delay: 0.2s;
       }
@@ -118,11 +126,11 @@ export default {
 @keyframes fadeIn {
   0% {
     opacity: 0;
-    transform: translate(-50%, 0) scale(0.2);
+    transform: translate(-50%, -50%) scale(0.2);
   }
   100% {
     opacity: 1;
-    transform: translate(-50%, 0) scale(1);
+    transform: translate(-50%, -50%) scale(1);
   }
 }
 
