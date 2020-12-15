@@ -1,54 +1,65 @@
 <template>
-  <div class="logo__frame" data-sticky="from: 0, duration: 300vh">
-    <div
-      class="rect__bg"
-      data-animation="transform : {40vh : scale(1), 100vh : scale(.9), 150vh : scale(.9), 200vh : scale(1) }"
-    ></div>
+  <div
+    class="logo__frame"
+    data-sticky="from: 0, duration: 10vh"
+    data-classes="1vh: { add: frame_2 }"
+    :data-frame="frame"
+  >
+    <div class="rect__bg"></div>
 
-    <div
-      class="logo__holder"
-      data-animation="
-      left : { 0vh : 50%, 50vh : 0% },
-      top : { 0vh : 50%, 100vh : 50%, 200vh : 0% },
-      transform : 
-       { 0vh : translate(-50%, -50%) scale(1), 
-       100vh : translate(-50%, -50%) scale(1), 
-       200vh : translate(0%, -22%) scale(.3)}"
-    >
+    <div class="logo__holder">
       <Logo />
     </div>
 
-    <div
-      class="hello__holder"
-      data-classes="75vh : { add : active }"
-      data-animation="
-        opacity : { 75vh : 0 , 100vh : 1, 150vh : 1, 200vh : 0 },
-        transform : { 70vh : translate(0,100px) , 100vh : translate(0,0), 150vh : translate(0,0), 200vh : translate(0,100px)  }
-        "
-    >
+    <div class="hello__holder">
       <h2 class="content">Hello, We're</h2>
       <h1 class="content">Orb Digital</h1>
       <p class="content">
         We craft delightful digital experiences that helps you grow your
         business & services
       </p>
+      <div class="content arrow_container">
+        <Arrow />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import Logo from '~/components/Logo'
+import Arrow from '~/components/Home/LogoFrameScrollArrow'
 
 export default {
-  components: { Logo },
+  components: { Logo, Arrow },
+  data() {
+    return {
+      frame: 0,
+    }
+  },
+  mounted() {
+    document.querySelector('body').style.overflow = 'hidden'
+    setTimeout(() => {
+      document.querySelector('body').style.overflow = 'unset'
+      this.updateFrame(1)
+    }, 1000)
+  },
+  methods: {
+    updateFrame(frame) {
+      this.frame = frame
+    },
+  },
 }
 </script>
 
 <style lang="scss" scoped>
+.logo__frame_container {
+  min-height: 100vh;
+}
 .rect__bg {
   position: fixed;
-  top: 0;
-  left: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   height: 100vh;
   width: 100vw;
   background: #ffe902;
@@ -64,6 +75,12 @@ export default {
   position: absolute;
   top: 0;
   left: 0;
+  .logo__holder,
+  .hello__holder,
+  .rect__bg {
+    transition: 1s ease-in-out;
+  }
+
   .logo__holder {
     position: absolute;
     // background: red;
@@ -72,76 +89,95 @@ export default {
     transform-origin: center;
     z-index: 1;
     transform: translate(-50%, -50%);
-    animation-name: fadeIn;
-    animation-duration: 1s;
-    // animation-fill-mode: forwards;
   }
-}
-.hello__holder {
-  width: 100vw;
-  height: 100vh;
-  left: 50%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  max-width: 400px;
-  margin: auto;
-  text-align: center;
-  z-index: 1;
+  .hello__holder {
+    width: 100vw;
+    height: 100vh;
+    left: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 400px;
+    margin: auto;
+    text-align: center;
+    z-index: 1;
+    // hide
+    .arrow_container {
+      position: fixed;
+      bottom: 21px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+    @for $i from 1 through 4 {
+      .content {
+        opacity: 0;
+        transform: translate(0, 60px);
+        transition: 0.5s ease-in-out;
+        pointer-events: none;
 
-  &.active {
-    .content {
-      opacity: 0;
-      transform: translate(0, 40px);
-
-      animation-name: fadeUp;
-      animation-fill-mode: forwards;
-      animation-duration: 0.4s;
-
-      &:nth-child(2) {
-        animation-delay: 0.2s;
+        &:nth-child(#{$i}) {
+          transition-delay: ($i * 0.1) + 0.5s;
+        }
       }
-      &:nth-child(3) {
-        animation-delay: 0.4s;
+    }
+
+    h1 {
+      font-size: 70px;
+    }
+
+    h1,
+    h2,
+    p {
+      margin: 10px 0;
+    }
+    p {
+      font-size: 22px;
+      line-height: 1.7;
+    }
+  }
+  &[data-frame='1'] {
+    .logo__holder {
+      left: 0;
+    }
+    .rect__bg {
+      height: calc(100vh - 100px);
+      width: calc(100vw - 100px);
+    }
+    .hello__holder {
+      .content {
+        opacity: 1;
+        transform: translate(0, 0);
+        pointer-events: unset;
       }
     }
   }
+  &[data-frame='2'],
+  &.frame_2 {
+    .rect__bg {
+      height: 100vh !important;
+      width: 100vw !important;
+    }
+    .logo__holder {
+      left: 0 !important;
+      top: 0 !important;
+      transform: translate(0%, 0%) scale(0.375) !important;
+    }
+    .hello__holder {
+      @for $i from 1 through 4 {
+        .content {
+          opacity: 0;
+          transform: translate(0, 60px) !important;
+          transition: 0.5s ease-in-out !important;
+          pointer-events: none !important;
 
-  h1 {
-    font-size: 70px;
-  }
-
-  h1,
-  h2,
-  p {
-    margin: 10px 0;
-  }
-  p {
-    font-size: 22px;
-    line-height: 1.7;
-  }
-}
-
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(0.2);
-  }
-  100% {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
-  }
-}
-
-@keyframes fadeUp {
-  0% {
-    opacity: 0;
-    transform: translate(0, 40px);
-  }
-  100% {
-    opacity: 1;
-    transform: translate(0, 0);
+          &:nth-child(#{$i}) {
+            transition-delay: ($i * 0.1);
+          }
+        }
+      }
+    }
   }
 }
 </style>
