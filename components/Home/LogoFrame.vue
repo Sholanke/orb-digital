@@ -194,17 +194,17 @@ export default {
   padding: 4px;
   overflow: hidden;
 
-  // &:after {
-  //   content: '';
-  //   height: 500px;
-  //   width: 500px;
-  //   background: rgb(255, 217, 0);
-  //   position: absolute;
-  //   bottom: 0;
-  //   right: 0;
-  //   filter: blur(100px);
-  //   will-change: height width;
-  // }
+  &:after {
+    content: '';
+    height: 500px;
+    width: 500px;
+    background: rgba(255, 217, 0, 0.219);
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    filter: blur(100px);
+    will-change: height width;
+  }
 
   .box {
     background: #0e0c0b;
