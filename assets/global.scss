@@ -11,3 +11,12 @@ img {
   object-fit: cover;
   object-position: center;
 }
+
+.page-enter-active,
+.page-leave-active {
+  transition: 0.5s;
+}
+.page-enter,
+.page-leave-to {
+  opacity: 0;
+}
