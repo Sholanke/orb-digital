@@ -3,7 +3,9 @@
 </template>
 
 <script>
-export default {}
+export default {
+  layout: 'grid',
+}
 </script>
 
 <style lang="scss" scoped></style>

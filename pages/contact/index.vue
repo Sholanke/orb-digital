@@ -1,9 +1,16 @@
 <template>
-  <div>Contact page</div>
+  <Contact />
 </template>
 
 <script>
-export default {}
+import Contact from '@/components/Contact/Contact'
+
+export default {
+  layout: 'grid',
+  components: {
+    Contact,
+  },
+}
 </script>
 
 <style lang="scss" scoped></style>

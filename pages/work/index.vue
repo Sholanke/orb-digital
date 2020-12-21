@@ -1,9 +1,11 @@
 <template>
-  <div>Work page</div>
+  <div>Work</div>
 </template>
 
 <script>
-export default {}
+export default {
+  layout: 'grid',
+}
 </script>
 
 <style lang="scss" scoped></style>
