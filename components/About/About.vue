@@ -60,6 +60,7 @@ export default {}
       background: #161311;
       margin: 0 -20px;
       padding: 50px 20px;
+      max-width: unset;
     }
     h1 {
       line-height: 1.5;
