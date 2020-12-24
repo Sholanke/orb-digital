@@ -25,7 +25,11 @@
       </div>
       <div class="col">
         <div class="__header max_width">
-          <TheNavBar />
+          <TheNavBar class="navbar" />
+
+          <Logo />
+
+          <TheMobileNavBar />
         </div>
         <div class="max_width">
           <nuxt />
@@ -40,12 +44,20 @@ export default {}
 </script>
 
 <style lang="scss" scoped>
+@import '~/assets/_mixins.scss';
 .grid_page {
   padding: 0 60px;
   color: #0e0c0bf6;
   max-width: 1440px;
   margin-right: auto;
   margin-left: auto;
+
+  @include mobile {
+    padding: 0 20px;
+    * {
+      color: #fff;
+    }
+  }
 
   &:after {
     content: '';
@@ -58,17 +70,32 @@ export default {}
       linear-gradient(#533d3df6, #ac7c64f6 70.71%);
     z-index: -1;
     display: block;
+    @include mobile {
+      width: 100vw;
+      height: 400px;
+      position: absolute;
+      background: #161311;
+    }
   }
 
   .__header {
     width: 100%;
     padding: 30px 0;
     padding-top: 57px;
+    @include mobile {
+      display: flex;
+      justify-content: space-between;
+    }
   }
+
   &__container__grid {
     display: grid;
     grid-template-columns: 80px 1fr;
     grid-gap: 60px;
+
+    @include mobile {
+      grid-template-columns: 1fr;
+    }
     .col {
       &.logo_col {
         padding-top: 30px;
@@ -78,6 +105,9 @@ export default {}
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+        @include mobile {
+          display: none;
+        }
         .logo {
           width: 80px;
           height: 80px;
@@ -111,6 +141,21 @@ export default {}
       &:nth-child(#{$i}) {
         transition-delay: ($i * 0.2) + 0s;
         will-change: transform;
+      }
+    }
+  }
+}
+.navbar {
+  @include mobile {
+    display: none;
+  }
+}
+::v-deep {
+  .__header {
+    .logo {
+      svg {
+        height: 34px;
+        width: 34px;
       }
     }
   }

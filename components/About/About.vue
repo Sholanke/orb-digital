@@ -34,18 +34,33 @@ export default {}
 </script>
 
 <style lang="scss" scoped>
+@import '~/assets/_mixins.scss';
 .about_page__grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   min-height: 100vh;
+  @include mobile {
+    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column-reverse;
+  }
   .__right,
   .__left {
     padding-top: 150px;
     padding-bottom: 150px;
+    @include mobile {
+      padding-top: 50px;
+      padding-bottom: 50px;
+    }
   }
   .__right {
     color: #fff;
     max-width: 460px;
+    @include mobile {
+      background: #161311;
+      margin: 0 -20px;
+      padding: 50px 20px;
+    }
     h1 {
       line-height: 1.5;
       margin: 30px 0 50px 0;
@@ -66,6 +81,14 @@ export default {}
   }
   .__left {
     width: calc(100% - 80px);
+    @include mobile {
+      * {
+        color: #0e0c0bf6;
+      }
+    }
+    * {
+      color: #0e0c0bf6;
+    }
     h1 {
       text-transform: uppercase;
       font-size: 20px;
@@ -75,6 +98,9 @@ export default {}
     p {
       margin: 20px 0;
       font-size: 30px;
+      @include mobile {
+        font-size: 25px;
+      }
     }
   }
 }

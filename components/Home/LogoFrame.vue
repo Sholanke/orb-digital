@@ -28,6 +28,7 @@
     <div class="hero_holder">
       <div class="nav_bar">
         <TheNavBar />
+        <TheMobileNavBar />
       </div>
       <div class="project_holder">
         <div
@@ -42,8 +43,23 @@
           <div class="__left">
             <h2 class="title content">{{ title }}</h2>
             <p class="content">{{ subTitle }}</p>
-            <p class="content desc">{{ description }}</p>
-            <a :href="caseLink" class="arrow_link content">View Case</a>
+            <p v-if="description" class="content desc">{{ description }}</p>
+            <a :href="caseLink" class="arrow_link content">
+              <svg
+                width="32"
+                height="20"
+                viewBox="0 0 32 20"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M31.5792 9.99955C31.5595 9.77555 31.4658 9.47649 31.3161 9.30876L23.4213 0.361275C23.0769 -0.106266 22.3668 -0.104726 21.9298 0.277656C21.4928 0.660039 21.4595 1.33947 21.8423 1.74287L28.2075 8.94691H1.05264C0.47132 8.94691 0 9.41818 0 9.99955C0 10.5809 0.47132 11.0522 1.05264 11.0522H28.2075L21.8423 18.2562C21.4246 18.6596 21.5421 19.3513 21.9791 19.7337C22.4161 20.1161 23.0769 20.0889 23.4213 19.6378L31.3161 10.6903C31.5271 10.4618 31.5674 10.2137 31.5792 9.99955Z"
+                  fill="currentColor"
+                />
+              </svg>
+
+              View case study</a
+            >
           </div>
           <div class="__right">
             <div class="__image_rapper">
@@ -86,32 +102,31 @@ export default {
   data() {
     return {
       frame: 0,
-      scrollCount: 0,
       projects: [
         {
-          title: 'Creativity and Innovation',
-          subTitle: 'Website / UI : UX',
-          description:
-            'We like to constantly challenge the conventional way of doing things by finding fun and more effective ways of doing them.',
+          title: 'Mallbly.',
+          subTitle: 'Website / Brand / Content Development',
+          // description:
+          //   'We like to constantly challenge the conventional way of doing things by finding fun and more effective ways of doing them.',
           dataClasses: '0  : { add: active }, 50vh : {remove : active}',
           caseLink: '#',
           image:
             'https://cdn.dribbble.com/users/427857/screenshots/13372241/dribbble-shot-7_2x.png',
         },
         {
-          title: 'Reliability and Consistency.',
+          title: 'Babelos.',
           subTitle: 'Website / UI : UX',
-          description:
-            'We like to constantly challenge the conventional way of doing things by finding fun and more effective ways of doing them.',
+          // description:
+          //   'We like to constantly challenge the conventional way of doing things by finding fun and more effective ways of doing them.',
           dataClasses: '50vh : { add: active }, 100vh : { remove : active }',
           caseLink: '#',
           image: '/app.png',
         },
         {
-          title: 'Jollof.',
-          subTitle: 'Website / UI : UX',
-          description:
-            'We like to constantly challenge the conventional way of doing things by finding fun and more effective ways of doing them.',
+          title: 'Jollof Republik.',
+          subTitle: 'Website / Brand / UI / UX / Mobile App',
+          // description:
+          //   'We like to constantly challenge the conventional way of doing things by finding fun and more effective ways of doing them.',
           dataClasses: '100vh : { add: active }',
           caseLink: '#',
           image:
@@ -122,8 +137,10 @@ export default {
   },
   mounted() {
     document.querySelector('body').style.overflow = 'hidden'
+
     setTimeout(() => {
       document.querySelector('body').style.overflow = 'unset'
+
       this.updateFrame(1)
     }, 1000)
   },
@@ -136,43 +153,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '~/assets/_mixins.scss';
+
 .logo__frame_container {
   min-height: 100vh;
-}
-.rect__bg {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  height: 100vh;
-  width: 100vw;
-  background: #0e0c0bf6;
-  z-index: -1;
-  display: grid;
-  grid-template-columns: repeat(16, 1fr);
-  grid-template-rows: repeat(10, 1fr);
-  grid-gap: 2px;
-  padding: 4px;
-  overflow: hidden;
-
-  // &:after {
-  //   content: '';
-  //   height: 500px;
-  //   width: 500px;
-  //   background: rgba(255, 217, 0, 0.219);
-  //   position: absolute;
-  //   bottom: 0;
-  //   right: 0;
-  //   filter: blur(100px);
-  //   will-change: height width;
-  // }
-
-  .box {
-    background: #0e0c0b;
-    border-radius: 10px;
-    position: relative;
-    z-index: 1;
-  }
 }
 
 .logo__frame {
@@ -193,6 +177,45 @@ export default {
     will-change: transform opacity top left;
   }
 
+  .rect__bg {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 100vh;
+    width: 100vw;
+    background: rgba(14, 12, 11, 0.98);
+    z-index: -1;
+    display: grid;
+    grid-template-columns: repeat(16, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+    grid-gap: 2px;
+    padding: 4px;
+    overflow: hidden;
+
+    // &:after {
+    //   content: '';
+    //   height: 500px;
+    //   width: 500px;
+    //   background: rgba(255, 217, 0, 0.219);
+    //   position: absolute;
+    //   bottom: 0;
+    //   right: 0;
+    //   filter: blur(100px);
+    //   will-change: height width;
+    // }
+
+    .box {
+      background: #0e0c0b;
+      border-radius: 10px;
+      position: relative;
+      z-index: 1;
+      @include mobile {
+        display: none;
+      }
+    }
+  }
+
   .hero_holder {
     height: 100vh;
     width: 100%;
@@ -211,15 +234,18 @@ export default {
       position: relative;
       .project {
         display: flex;
-        align-items: center;
         justify-content: center;
         position: absolute;
         width: 100%;
-        padding-top: 150px;
+        padding-top: 130px;
         min-height: 560px;
         opacity: 0;
         transition: 1s;
         pointer-events: none;
+
+        @include mobile {
+          flex-direction: column;
+        }
 
         .__left,
         .__right {
@@ -227,8 +253,12 @@ export default {
           h2 {
             font-size: 50px;
             margin-bottom: 20px;
+            @include mobile {
+              font-size: 36px;
+            }
           }
           p {
+            line-height: 1.7;
             font-size: 20px;
           }
           .__image_rapper {
@@ -236,7 +266,9 @@ export default {
             width: 100%;
             position: relative;
             transform: translate(20%, 0);
-
+            @include mobile {
+              transform: translate(0);
+            }
             .__image_rapper__img {
               height: 100%;
               width: 1000px;
@@ -245,18 +277,40 @@ export default {
               left: 0;
               border-radius: 15px;
               transform: translate(20%, 0);
+
+              @include mobile {
+                position: unset;
+                transform: 0;
+                width: 100%;
+              }
               img {
                 position: absolute;
                 height: 100%;
+                @include mobile {
+                  position: unset;
+                  width: 100%;
+                  height: 100%;
+                  height: 198px;
+                  margin-top: 30px;
+                  border-radius: 6px;
+                }
               }
             }
           }
           .arrow_link {
-            display: block;
+            display: flex;
+            align-items: center;
             color: rgb(255, 255, 255);
-            margin-top: 50px;
             font-size: 20px;
             text-decoration: none;
+            margin-top: auto;
+            margin-bottom: 20px;
+            svg {
+              margin-right: 20px;
+            }
+            @include mobile {
+              margin-top: 50px;
+            }
           }
           .desc {
             margin-top: 40px;
@@ -277,6 +331,18 @@ export default {
           }
         }
 
+        .__left {
+          flex: 0.7;
+          display: flex;
+          flex-direction: column;
+          padding-top: 140px;
+
+          @include mobile {
+            flex: 1;
+            width: 100%;
+            padding-top: 0;
+          }
+        }
         &.active {
           opacity: 1;
           pointer-events: unset;
@@ -315,6 +381,9 @@ export default {
     margin: auto;
     text-align: center;
     z-index: 1;
+    @include mobile {
+      padding: 0 30px;
+    }
 
     .arrow_container {
       position: fixed;
@@ -339,6 +408,9 @@ export default {
 
     h1 {
       font-size: 70px;
+      @include mobile {
+        font-size: 40px;
+      }
     }
 
     h1,
@@ -351,14 +423,27 @@ export default {
       line-height: 1.7;
     }
   }
+
   &[data-frame='1'] {
     .logo__holder {
       left: 50px;
+      @include mobile {
+        left: 50%;
+        top: 0;
+        transform: translate(-48%, -30%) scale(0.275);
+      }
     }
     .rect__bg {
       height: calc(100vh - 100px);
       width: calc(100vw - 100px);
       border-radius: 10px;
+
+      @include mobile {
+        height: calc(100vh - 52px);
+        width: calc(100vw - 20px);
+        transform: translate(-50%, 0);
+        top: 42px;
+      }
     }
     .hello__holder {
       .content {
@@ -368,17 +453,24 @@ export default {
       }
     }
   }
+
   &[data-frame='2'],
   &.frame_2 {
     .rect__bg {
       height: 100vh !important;
       width: 100vw !important;
       border-radius: 0;
+      @include mobile {
+        top: 0 !important;
+      }
     }
     .logo__holder {
       left: 4vw !important;
       top: 0 !important;
       transform: translate(-35%, -30%) scale(0.275) !important;
+      @include mobile {
+        transform: translate(-35%, -30%) scale(0.175) !important;
+      }
     }
     .hello__holder {
       @for $i from 1 through 4 {
@@ -417,6 +509,9 @@ export default {
   justify-content: flex-end;
   flex-direction: column;
   padding-bottom: 100px;
+  @include mobile {
+    display: none;
+  }
 
   @for $i from 1 through 3 {
     .link {
@@ -441,6 +536,20 @@ export default {
   }
   100% {
     opacity: 1;
+  }
+}
+::v-deep {
+  .nav_bar {
+    .nav_bar {
+      a {
+        &.nuxt-link-exact-active {
+          color: #ffe902;
+        }
+        @include mobile {
+          display: none;
+        }
+      }
+    }
   }
 }
 </style>

@@ -14,9 +14,14 @@ export default {}
 </script>
 
 <style lang="scss" scoped>
+@import '~/assets/_mixins.scss';
+
 .nav_bar {
   display: flex;
   align-items: center;
+  @include mobile {
+    display: none;
+  }
   &__link {
     margin-right: 20px;
     color: inherit;
