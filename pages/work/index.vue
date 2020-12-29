@@ -1,10 +1,10 @@
 <template>
-  <div>Work</div>
+  <Work />
 </template>
 
 <script>
 export default {
-  layout: 'grid',
+  layout: 'normalLayout',
 }
 </script>
 
