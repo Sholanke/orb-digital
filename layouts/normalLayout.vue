@@ -110,7 +110,7 @@ export default {}
   align-items: center;
   justify-content: flex-end;
   flex-direction: column;
-  padding-bottom: 100px;
+  padding-bottom: 64px;
 
   @for $i from 1 through 3 {
     .link {

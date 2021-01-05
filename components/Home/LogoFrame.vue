@@ -70,6 +70,9 @@
           </div>
         </div>
       </div>
+      <div class="content arrow_container">
+        <Arrow />
+      </div>
     </div>
 
     <div class="social_media">
@@ -184,7 +187,7 @@ export default {
     transform: translate(-50%, -50%);
     height: 100vh;
     width: 100vw;
-    background: rgba(14, 12, 11, 0.98);
+    background: linear-gradient(to top, #0e0c0bfb, #0e0c0b);
     z-index: -1;
     display: grid;
     grid-template-columns: repeat(16, 1fr);
@@ -237,7 +240,7 @@ export default {
         justify-content: center;
         position: absolute;
         width: 100%;
-        padding-top: 120px;
+        padding-top: 70px;
         min-height: 560px;
         opacity: 0;
         transition: 1s;
@@ -358,6 +361,9 @@ export default {
         }
       }
     }
+    .arrow_container {
+      bottom: 30px;
+    }
   }
 
   .logo__holder {
@@ -385,13 +391,6 @@ export default {
       padding: 0 30px;
     }
 
-    .arrow_container {
-      position: fixed;
-      bottom: 80px;
-      width: 100%;
-      display: flex;
-      justify-content: center;
-    }
     //hide contents
     @for $i from 1 through 4 {
       .content {
@@ -508,6 +507,14 @@ export default {
   }
 }
 
+.arrow_container {
+  position: fixed;
+  bottom: 80px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
 .social_media {
   position: fixed;
   width: 82px;
@@ -517,7 +524,7 @@ export default {
   align-items: center;
   justify-content: flex-end;
   flex-direction: column;
-  padding-bottom: 100px;
+  padding-bottom: 64px;
   @include mobile {
     display: none;
   }
