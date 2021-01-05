@@ -118,11 +118,6 @@ export default {}
       }
     }
   }
-  //   &__grid {
-  //     display: grid;
-  //     grid-template-columns: 1fr 1fr;
-  //     min-height: 100vh;
-  //   }
 }
 .social_media {
   display: flex;
@@ -156,6 +151,10 @@ export default {}
       svg {
         height: 34px;
         width: 34px;
+        display: none;
+        @include mobile {
+          display: block;
+        }
       }
     }
   }

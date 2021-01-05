@@ -23,7 +23,7 @@ export default {}
     display: none;
   }
   &__link {
-    margin-right: 20px;
+    margin-right: 40px;
     color: inherit;
     text-decoration: none;
     &.nuxt-link-exact-active {

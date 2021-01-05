@@ -15,7 +15,7 @@
 
     <div class="hello__holder">
       <h2 class="content">Hello, We're</h2>
-      <h1 class="content">Orb Digital</h1>
+      <h1 class="content __color_theme">Orb Digital</h1>
       <p class="content">
         We craft delightful digital experiences that helps you grow your
         business & services
@@ -237,7 +237,7 @@ export default {
         justify-content: center;
         position: absolute;
         width: 100%;
-        padding-top: 130px;
+        padding-top: 120px;
         min-height: 560px;
         opacity: 0;
         transition: 1s;
@@ -262,7 +262,7 @@ export default {
             font-size: 20px;
           }
           .__image_rapper {
-            height: 450px;
+            height: 540px;
             width: 100%;
             position: relative;
             transform: translate(20%, 0);
@@ -387,7 +387,7 @@ export default {
 
     .arrow_container {
       position: fixed;
-      bottom: 21px;
+      bottom: 80px;
       width: 100%;
       display: flex;
       justify-content: center;
@@ -413,14 +413,23 @@ export default {
       }
     }
 
+    h2 {
+      font-size: 50px;
+      font-weight: 100;
+      @include mobile {
+        font-size: 40px;
+      }
+    }
+
     h1,
     h2,
     p {
       margin: 10px 0;
     }
     p {
-      font-size: 22px;
+      font-size: 20px;
       line-height: 1.7;
+      margin-top: 50px;
     }
   }
 

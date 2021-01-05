@@ -137,6 +137,10 @@ export default {}
       svg {
         height: 34px;
         width: 34px;
+        display: none;
+        @include mobile {
+          display: block;
+        }
       }
     }
   }
