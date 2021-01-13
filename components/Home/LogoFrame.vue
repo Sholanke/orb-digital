@@ -1,7 +1,7 @@
 <template>
   <div
     class="logo__frame"
-    data-sticky="from: 0, duration: 150vh"
+    data-sticky="from: 0, duration: 350vh"
     data-classes="8vh: { add: frame_2 }"
     :data-frame="frame"
   >
@@ -33,7 +33,15 @@
       <div class="project_holder">
         <div
           v-for="(
-            { dataClasses, description, title, subTitle, image, caseLink },
+            {
+              dataClasses,
+              description,
+              title,
+              subTitles,
+              image,
+              caseLink,
+              slug,
+            },
             index
           ) in projects"
           :key="index"
@@ -42,9 +50,14 @@
         >
           <div class="__left">
             <h2 class="title content">{{ title }}</h2>
-            <p class="content">{{ subTitle }}</p>
+            <div class="content">
+              <p v-for="subTitle in subTitles" :key="subTitle">
+                {{ subTitle }}
+              </p>
+            </div>
+
             <p v-if="description" class="content desc">{{ description }}</p>
-            <a :href="caseLink" class="arrow_link content">
+            <nuxt-link :to="`/work/${slug}`" class="arrow_link content">
               <svg
                 width="32"
                 height="20"
@@ -58,7 +71,7 @@
                 />
               </svg>
 
-              View case study</a
+              View case study</nuxt-link
             >
           </div>
           <div class="__right">
@@ -99,43 +112,14 @@
 import Logo from '~/components/Logo'
 import Arrow from '~/components/Home/LogoFrameScrollArrow'
 import TheNavBar from '~/components/Others/NavBars/TheNavBar'
+import { projects } from '~/utils/projects'
 
 export default {
   components: { Logo, Arrow, TheNavBar },
   data() {
     return {
       frame: 0,
-      projects: [
-        {
-          title: 'Mallbly.',
-          subTitle: 'Website / Brand / Content Development',
-          // description:
-          //   'We like to constantly challenge the conventional way of doing things by finding fun and more effective ways of doing them.',
-          dataClasses: '0  : { add: active }, 50vh : {remove : active}',
-          caseLink: '#',
-          image:
-            'https://cdn.dribbble.com/users/427857/screenshots/13372241/dribbble-shot-7_2x.png',
-        },
-        {
-          title: 'Babelos.',
-          subTitle: 'Website / UI : UX',
-          // description:
-          //   'We like to constantly challenge the conventional way of doing things by finding fun and more effective ways of doing them.',
-          dataClasses: '50vh : { add: active }, 100vh : { remove : active }',
-          caseLink: '#',
-          image: '/app.png',
-        },
-        {
-          title: 'Jollof Republik.',
-          subTitle: 'Website / Brand / UI / UX / Mobile App',
-          // description:
-          //   'We like to constantly challenge the conventional way of doing things by finding fun and more effective ways of doing them.',
-          dataClasses: '100vh : { add: active }',
-          caseLink: '#',
-          image:
-            'https://cdn.dribbble.com/users/427857/screenshots/13372241/dribbble-shot-7_2x.png',
-        },
-      ],
+      projects: projects.all,
     }
   },
   mounted() {

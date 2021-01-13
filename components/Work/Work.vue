@@ -1,43 +1,60 @@
 <template>
-  <div class="grid_container">
-    <div class="__grid">
-      <div class="col __left">
-        <h1>Project Title.</h1>
-        <p>
-          Website, UI/UX Design, Art Direction, Motion Design, Visual Design,
-          Iconography, Illustrations, Blockchain, Financial service, Banking,
-        </p>
-        <a href="#">www.domain.com</a>
-      </div>
-      <div class="col __right">
-        <p class="description">
-          About the company the project was done for. We are a
-          multi-disciplinary Digital Agency with a focus on interaction and a
-          passion for creativity. We push the limits of our mind.
-        </p>
-        <span class="__spacer"></span>
-        <p class="description">
-          “We were thrilled to work with Ueno on our rebrand. We knew it would
-          be a challenge to pull off a name change and new visual identity on a
-          such a short timeline but the process the Ueno team led was very
-          efficient and extremely collaborative.”
-        </p>
+  <div>
+    <div v-if="project" class="grid_container">
+      <div class="__grid">
+        <div class="col __left">
+          <h1>{{ project.title }}</h1>
+          <p>
+            Website, UI/UX Design, Art Direction, Motion Design, Visual Design,
+            Iconography, Illustrations, Blockchain, Financial service, Banking,
+          </p>
+          <a href="#">Go To Website</a>
+        </div>
+        <div class="col __right">
+          <p class="description">
+            About the company the project was done for. We are a
+            multi-disciplinary Digital Agency with a focus on interaction and a
+            passion for creativity. We push the limits of our mind.
+          </p>
+          <span class="__spacer"></span>
+          <p class="description">
+            “We were thrilled to work with Ueno on our rebrand. We knew it would
+            be a challenge to pull off a name change and new visual identity on
+            a such a short timeline but the process the Ueno team led was very
+            efficient and extremely collaborative.”
+          </p>
 
-        <div class="author_info">
-          <div class="image_rapper"></div>
-          <div class="text">
-            <p class="name">Firstname Lastname</p>
-            <p class="role">Designation. Company Name</p>
+          <div class="author_info">
+            <div class="image_rapper"></div>
+            <div class="text">
+              <p class="name">Firstname Lastname</p>
+              <p class="role">Designation. Company Name</p>
+            </div>
           </div>
         </div>
       </div>
+      <div class="__image_rapper">
+        <img :src="`/images/works/${project.workImage}`" alt="" srcset="" />
+      </div>
     </div>
-    <div class="__image_rapper"></div>
   </div>
 </template>
 
 <script>
-export default {}
+import { projects } from '~/utils/projects'
+
+export default {
+  data() {
+    return {
+      project: null,
+    }
+  },
+  mounted() {
+    const slug = this.$route.params.slug
+    const thisProject = projects.getProject(slug)
+    this.project = thisProject
+  },
+}
 </script>
 
 <style lang="scss" scoped>
@@ -64,7 +81,7 @@ export default {}
   .__grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    padding-top: 30px;
+    padding-top: 130px;
     @include mobile {
       grid-template-columns: 1fr;
     }
@@ -81,8 +98,13 @@ export default {}
           font-size: 14px;
         }
         a {
-          color: royalblue;
+          color: inherit;
           text-decoration: none;
+          font-weight: 900;
+          font-size: 18px;
+          &:hover {
+            text-decoration: underline;
+          }
         }
       }
       &.__right {
@@ -109,7 +131,8 @@ export default {}
             background: #c4c4c4;
             border-radius: 100vh;
             display: block;
-            background-image: url('https://images.unsplash.com/photo-1519699047748-de8e457a634e?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MjF8fGJsYWNrJTIwZ2lybHxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80');
+            background-image: url('https://images.unsplash.com/photo-1511945863317-d60e146e9016?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxjb2xsZWN0aW9uLXRodW1ibmFpbHx8MjI0OTE4OHx8ZW58MHx8fA%3D%3D&auto=format&fit=crop&w=750&q=60');
+            box-shadow: 0 0 10px rgba(121, 127, 136, 0.178);
             background-size: cover;
             background-position: center;
           }
@@ -130,10 +153,14 @@ export default {}
     }
   }
   > .__image_rapper {
-    height: 1323px;
-    background: #c4c4c4;
     margin-top: 100px;
     margin-bottom: 100px;
+    box-shadow: 0 0 50px rgba(121, 127, 136, 0.178);
+    border-radius: 5px 5px 0 0;
+    overflow: hidden;
+    img {
+      width: 100%;
+    }
   }
 }
 </style>
