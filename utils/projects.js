@@ -21,7 +21,7 @@ const AllProjects = [
   },
   {
     title: 'Jollof Republik.',
-    subTitles: ['Website Development', 'Mobile App (UI : UX)'],
+    subTitles: ['Website Development', 'Mobile App ( UI : UX )'],
     description: '...In Progress',
     dataClasses: '100vh : { add: active }, 150vh : { remove : active }',
     workImage: 'jollof-r.png',

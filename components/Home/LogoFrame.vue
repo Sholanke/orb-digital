@@ -77,6 +77,11 @@
           <div class="__right">
             <div class="__image_rapper">
               <div class="__image_rapper__img content">
+                <div class="tab_header">
+                  <span class="action_button"></span>
+                  <span class="action_button"></span>
+                  <span class="action_button"></span>
+                </div>
                 <img :src="image" alt="" srcset="" />
               </div>
             </div>
@@ -184,7 +189,7 @@ export default {
     //   content: '';
     //   height: 500px;
     //   width: 500px;
-    //   background: rgba(255, 217, 0, 0.219);
+    //   background: rgba(255, 217, 0, 0.089);
     //   position: absolute;
     //   bottom: 0;
     //   right: 0;
@@ -262,8 +267,49 @@ export default {
               display: block;
               position: absolute;
               left: 0;
-              border-radius: 15px;
+              border-radius: 10px;
               transform: translate(20%, 0);
+              overflow: hidden;
+
+              .tab_header {
+                background: rgb(255, 255, 255);
+                height: 30px;
+                display: flex;
+                align-items: center;
+                padding: 0 10px;
+                box-shadow: 0 0 30px rgba(80, 98, 105, 0.2);
+                position: relative;
+                z-index: 1;
+
+                .action_button {
+                  height: 13px;
+                  width: 13px;
+                  background: red;
+                  margin-right: 10px;
+                  border-radius: 100vh;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+
+                  &:nth-child(1) {
+                    background: tomato;
+                    &:after {
+                      content: '';
+                      height: 5px;
+                      width: 5px;
+                      background: rgb(175, 68, 49);
+                      display: block;
+                      border-radius: 100vh;
+                    }
+                  }
+                  &:nth-child(2) {
+                    background: orange;
+                  }
+                  &:nth-child(3) {
+                    background: rgb(26, 182, 65);
+                  }
+                }
+              }
 
               @include mobile {
                 position: unset;
@@ -273,6 +319,7 @@ export default {
               img {
                 position: absolute;
                 height: 100%;
+                top: 30px;
                 @include mobile {
                   position: unset;
                   width: 100%;
