@@ -272,7 +272,7 @@ export default {
               position: absolute;
               left: 0;
               border-radius: 10px;
-              transform: translate(20%, 0);
+              transform: translate(100px, 0);
               overflow: hidden;
 
               .tab_header {
@@ -361,6 +361,7 @@ export default {
               transform: translate(0, 60px);
               transition: 0.5s ease-in-out;
               transition-delay: 0s;
+              will-change: transform;
 
               &:nth-child(#{$i}) {
                 transition-delay: ($i * 0.1) + 0s;
@@ -381,11 +382,10 @@ export default {
             padding-top: 0;
           }
         }
+
         &.active {
           opacity: 1;
           pointer-events: unset;
-
-          // transition-delay: 0.5s;
           .__left,
           .__right {
             .content {
