@@ -1,9 +1,8 @@
 <template>
   <div>
     <nav class="nav_bar">
-      <nuxt-link to="/" class="nav_bar__link">Home</nuxt-link>
-      <nuxt-link to="/about" class="nav_bar__link">About</nuxt-link>
-      <nuxt-link to="/work" class="nav_bar__link">Work</nuxt-link>
+      <nuxt-link to="/" class="nav_bar__link">Projects</nuxt-link>
+      <nuxt-link to="/about" class="nav_bar__link">About Us</nuxt-link>
       <nuxt-link to="/contact" class="nav_bar__link">Reach Us</nuxt-link>
     </nav>
   </div>

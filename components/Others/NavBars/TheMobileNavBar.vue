@@ -35,13 +35,10 @@
 
     <div class="__links" :class="{ active: isOpen }">
       <nuxt-link to="/" class="nav_bar__link" :class="{ active: isOpen }">
-        Home
+        Projects
       </nuxt-link>
       <nuxt-link to="/about" class="nav_bar__link" :class="{ active: isOpen }">
-        About
-      </nuxt-link>
-      <nuxt-link to="/work" class="nav_bar__link" :class="{ active: isOpen }">
-        Work
+        About Us
       </nuxt-link>
       <nuxt-link
         to="/contact"

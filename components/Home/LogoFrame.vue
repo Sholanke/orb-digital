@@ -57,7 +57,7 @@
             </div>
 
             <p v-if="description" class="content desc">{{ description }}</p>
-            <nuxt-link :to="`/work/${slug}`" class="arrow_link content">
+            <nuxt-link :to="`/projects/${slug}`" class="arrow_link content">
               <svg
                 width="32"
                 height="20"
@@ -94,6 +94,10 @@
     </div>
 
     <div class="social_media">
+      <div class="slider">
+        <div class="thumb" data-animation="height: {0: 0, 324vh: 100%}"></div>
+      </div>
+
       <a href="#" class="link">
         <svg width="20" height="18" viewBox="0 0 20 18">
           <use href="/images/icons/twitter.svg#twitter" />
@@ -132,7 +136,6 @@ export default {
 
     setTimeout(() => {
       document.querySelector('body').style.overflow = 'unset'
-
       this.updateFrame(1)
     }, 1000)
   },
@@ -251,7 +254,8 @@ export default {
           }
           p {
             line-height: 1.7;
-            font-size: 20px;
+            font-size: 17px;
+            margin-bottom: 10px;
           }
           .__image_rapper {
             height: 540px;
@@ -530,6 +534,10 @@ export default {
       transition-delay: 0.5s;
     }
     .social_media {
+      .slider {
+        opacity: 1;
+        transition-delay: 0.8s;
+      }
       .link {
         opacity: 1;
         transform: translate(0, 0);
@@ -556,6 +564,7 @@ export default {
   justify-content: flex-end;
   flex-direction: column;
   padding-bottom: 64px;
+
   @include mobile {
     display: none;
   }
@@ -574,6 +583,19 @@ export default {
         will-change: transform;
       }
     }
+  }
+}
+
+.slider {
+  height: 250px;
+  width: 1px;
+  background: #ffffff2f;
+  left: 4.3vw;
+  margin-bottom: 100px;
+  opacity: 0;
+  transition: 0.2s ease-out;
+  .thumb {
+    background: #ffe801;
   }
 }
 

@@ -1,11 +1,22 @@
 <template>
   <div class="about_page__grid">
     <div class="__left">
-      <h1>Clientele</h1>
-      <p>Bank Of Agriculture</p>
+      <h1>Trusted by amazing Clients</h1>
+      <p>9pay</p>
+      <p>Deekay Group (Nexus)</p>
+      <p>F. O. Akinrele & Co</p>
+      <p>Woven Finance</p>
+      <p>Lendsqr</p>
+      <p>Trustbanc</p>
+      <p>Trium Ng</p>
+      <p>P2Vest</p>
       <p>Emerging Africa Group</p>
+      <p>Kredi Bank</p>
+      <p>Quetzal Consult</p>
       <p>Unlimited LA</p>
-      <p>Coupin</p>
+      <p>Jollof Republik</p>
+      <p>Babelos</p>
+      <p>Clayhall Apartments</p>
     </div>
     <div class="__right">
       <p class="__title">ABOUT US</p>

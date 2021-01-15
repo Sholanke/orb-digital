@@ -8,7 +8,7 @@
             Website, UI/UX Design, Art Direction, Motion Design, Visual Design,
             Iconography, Illustrations, Blockchain, Financial service, Banking,
           </p>
-          <a href="#">Go To Website</a>
+          <a :href="project.website" target="_blank">Go To Website</a>
         </div>
         <div class="col __right">
           <p class="description">
