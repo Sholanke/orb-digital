@@ -95,7 +95,10 @@
 
     <div class="social_media">
       <div class="slider">
-        <div class="thumb" data-animation="height: {0: 0, 324vh: 100%}"></div>
+        <div
+          class="thumb"
+          data-animation="transform: {0: translate(0, 0), 324vh: translate(0, 190px)}"
+        ></div>
       </div>
 
       <a href="#" class="link">
@@ -594,8 +597,12 @@ export default {
   margin-bottom: 100px;
   opacity: 0;
   transition: 0.2s ease-out;
+  overflow: hidden;
   .thumb {
     background: #ffe801;
+    height: 60px;
+    position: relative;
+    will-change: transform;
   }
 }
 
