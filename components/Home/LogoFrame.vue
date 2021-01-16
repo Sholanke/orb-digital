@@ -598,6 +598,7 @@ export default {
   opacity: 0;
   transition: 0.2s ease-out;
   overflow: hidden;
+
   @include mobile {
     display: none;
   }
