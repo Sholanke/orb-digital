@@ -45,6 +45,7 @@ export default {}
 
 <style lang="scss" scoped>
 @import '~/assets/_mixins.scss';
+
 .grid_page {
   padding: 0 60px;
   color: #0e0c0bf6;

@@ -88,7 +88,10 @@
           </div>
         </div>
       </div>
-      <div class="content arrow_container">
+      <div
+        class="content arrow_container"
+        data-classes="230vh : { add : hide }"
+      >
         <Arrow />
       </div>
     </div>
@@ -401,6 +404,10 @@ export default {
     }
     .arrow_container {
       bottom: 30px;
+      transition: 0.3s ease-out;
+      &.hide {
+        opacity: 0;
+      }
     }
   }
 
@@ -513,7 +520,7 @@ export default {
     .logo__holder {
       left: 4vw !important;
       top: 0 !important;
-      transform: translate(-35%, -30%) scale(0.275) !important;
+      transform: translate(-35%, -30%) scale(0.245) !important;
       @include mobile {
         transform: translate(-35%, -30%) scale(0.175) !important;
       }
@@ -621,7 +628,8 @@ export default {
 ::v-deep {
   .nav_bar {
     .nav_bar {
-      a {
+      a,
+      button {
         &.nuxt-link-exact-active {
           color: #ffe902;
         }
