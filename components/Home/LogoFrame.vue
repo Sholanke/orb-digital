@@ -579,7 +579,7 @@ export default {
     display: none;
   }
 
-  @for $i from 1 through 3 {
+  @for $i from 2 through 4 {
     .link {
       color: #fff;
       margin: 20px 0;
