@@ -69,6 +69,11 @@ const AllProjects = [
   },
 ]
 
+const handleKeyDown = ({ keyCode }) => {
+  if (keyCode === 37) projects.goToPreviousProject()
+  else if (keyCode === 39) projects.goToNextProject()
+}
+
 const projects = {
   all: AllProjects,
   getProject(slug) {
@@ -77,5 +82,23 @@ const projects = {
     )
     return projectsThatMatchedSlug[0]
   },
+  goToNextProject() {
+    window.scrollBy(0, 0.5 * window.innerHeight)
+  },
+  goToPreviousProject() {
+    window.scrollBy(0, -(0.5 * window.innerHeight))
+  },
+  initControls() {
+    window.addEventListener('keydown', handleKeyDown)
+  },
+  stopControls() {
+    window.removeEventListener('keydown', handleKeyDown)
+  },
 }
+
+// left = 37
+// up = 38
+// right = 39
+// down = 40
+
 export { projects }

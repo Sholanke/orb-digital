@@ -127,11 +127,14 @@ export default {
   },
   mounted() {
     document.querySelector('body').style.overflow = 'hidden'
-
     setTimeout(() => {
       document.querySelector('body').style.overflow = 'unset'
       this.updateFrame(1)
+      projects.initControls()
     }, 1000)
+    this.$once('hook:beforeDestroy', () => {
+      projects.stopControls()
+    })
   },
   methods: {
     updateFrame(frame) {
