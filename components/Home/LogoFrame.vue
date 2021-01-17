@@ -67,14 +67,16 @@
           </div>
           <div class="__right">
             <div class="__image_rapper">
-              <div class="__image_rapper__img content">
-                <div class="tab_header">
-                  <span class="action_button"></span>
-                  <span class="action_button"></span>
-                  <span class="action_button"></span>
+              <nuxt-link :to="`projects/${slug}`">
+                <div class="__image_rapper__img content">
+                  <div class="tab_header">
+                    <span class="action_button"></span>
+                    <span class="action_button"></span>
+                    <span class="action_button"></span>
+                  </div>
+                  <img :src="image" alt="" srcset="" />
                 </div>
-                <img :src="image" alt="" srcset="" />
-              </div>
+              </nuxt-link>
             </div>
           </div>
         </div>

@@ -2,7 +2,6 @@
   <div>
     <nav class="nav_bar">
       <button
-        to="/"
         class="nav_bar__link"
         :class="{ 'nuxt-link-exact-active': homePageIsActive }"
         @click="scrollToTop"
@@ -16,18 +15,16 @@
 </template>
 
 <script>
+import { projects } from '~/utils/projects'
 export default {
   computed: {
     homePageIsActive() {
-      return this.$route.path === '/'
+      return projects.homePageIsActive.call(this)
     },
   },
   methods: {
     scrollToTop() {
-      this.$router.push('/')
-      setTimeout(() => {
-        window.scrollTo(0, 100)
-      }, 1000)
+      projects.goToProjectsList.call(this)
     },
   },
 }

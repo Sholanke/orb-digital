@@ -34,9 +34,17 @@
     </label>
 
     <div class="__links" :class="{ active: isOpen }">
-      <nuxt-link to="/" class="nav_bar__link" :class="{ active: isOpen }">
+      <button
+        to="/"
+        class="nav_bar__link"
+        :class="{
+          active: isOpen,
+          'nuxt-link-exact-active': homePageIsActive,
+        }"
+        @click="scrollToTop"
+      >
         Projects
-      </nuxt-link>
+      </button>
       <nuxt-link to="/about" class="nav_bar__link" :class="{ active: isOpen }">
         About Us
       </nuxt-link>
@@ -71,6 +79,7 @@
 </template>
 
 <script>
+import { projects } from '~/utils/projects'
 export default {
   watchQuery: true,
   data() {
@@ -78,9 +87,19 @@ export default {
       isOpen: false,
     }
   },
+  computed: {
+    homePageIsActive() {
+      return projects.homePageIsActive.call(this)
+    },
+  },
   watch: {
     $route() {
       this.isOpen = false
+    },
+  },
+  methods: {
+    scrollToTop() {
+      projects.goToProjectsList.call(this)
     },
   },
 }
@@ -132,7 +151,8 @@ export default {
       pointer-events: unset;
     }
 
-    a {
+    a,
+    button {
       display: block;
       width: fit-content;
       margin-left: auto;

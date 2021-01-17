@@ -71,7 +71,7 @@ const AllProjects = [
   },
 ]
 
-const handleKeyDown = ({ keyCode }) => {
+const _handleKeyDown = ({ keyCode }) => {
   if (keyCode === 37) projects.goToPreviousProject()
   else if (keyCode === 39) projects.goToNextProject()
 }
@@ -84,6 +84,18 @@ const projects = {
     )
     return projectsThatMatchedSlug[0]
   },
+  goToProjectsList() {
+    this.$router.push('/')
+    setTimeout(
+      () => {
+        window.scrollTo(0, 100)
+      },
+      window.innerWidth > 600 ? 1000 : 3000
+    )
+  },
+  homePageIsActive() {
+    return this.$route.path === '/'
+  },
   goToNextProject() {
     window.scrollBy(0, 0.5 * window.innerHeight)
   },
@@ -91,10 +103,10 @@ const projects = {
     window.scrollBy(0, -(0.5 * window.innerHeight))
   },
   initControls() {
-    window.addEventListener('keydown', handleKeyDown)
+    window.addEventListener('keydown', _handleKeyDown)
   },
   stopControls() {
-    window.removeEventListener('keydown', handleKeyDown)
+    window.removeEventListener('keydown', _handleKeyDown)
   },
 }
 
