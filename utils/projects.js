@@ -39,6 +39,8 @@ const AllProjects = [
     workImage: 'p2vest.png',
     slug: 'p2Vest',
     image: '/images/projects/p2vest.png',
+    iframe:
+      'https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FOx62FPufeeYLyMCywFfm6x%2FP2Vest%3Fnode-id%3D530%253A0%26viewport%3D66%252C-105%252C0.9400813579559326%26scaling%3Dscale-down',
   },
   {
     title: 'Woven Finance.',

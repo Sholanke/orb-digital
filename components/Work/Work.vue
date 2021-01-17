@@ -33,8 +33,41 @@
           </div>
         </div>
       </div>
+
+      <div class="mini_tab">
+        <button
+          class="_btn"
+          :class="{ active: activeTab === 'web' }"
+          @click="updateActiveTab('web')"
+        >
+          Website Development
+        </button>
+        <button
+          v-if="project.iframe"
+          class="_btn"
+          :class="{ active: activeTab === 'mobile' }"
+          @click="updateActiveTab('mobile')"
+        >
+          Mobile App Prototype
+        </button>
+      </div>
+
       <div class="__image_rapper">
-        <img :src="`/images/works/${project.workImage}`" alt="" srcset="" />
+        <img
+          v-show="activeTab === 'web'"
+          :src="`/images/works/${project.workImage}`"
+          alt=""
+          srcset=""
+        />
+        <iframe
+          v-if="project.iframe"
+          v-show="activeTab === 'mobile'"
+          style="border: 1px solid rgba(0, 0, 0, 0.1)"
+          width="800"
+          height="450"
+          :src="project.iframe"
+          allowfullscreen
+        ></iframe>
       </div>
     </div>
   </div>
@@ -47,12 +80,18 @@ export default {
   data() {
     return {
       project: null,
+      activeTab: 'web',
     }
   },
   mounted() {
     const slug = this.$route.params.slug
     const thisProject = projects.getProject(slug)
     this.project = thisProject
+  },
+  methods: {
+    updateActiveTab(tabType) {
+      return (this.activeTab = tabType)
+    },
   },
   head() {
     const projectTitle = this.project?.title || ''
@@ -157,13 +196,36 @@ export default {
     }
   }
   > .__image_rapper {
-    margin-top: 100px;
     margin-bottom: 100px;
     box-shadow: 0 0 50px rgba(121, 127, 136, 0.178);
     border-radius: 5px 5px 0 0;
     overflow: hidden;
-    img {
+    img,
+    iframe {
       width: 100%;
+    }
+    iframe {
+      min-height: 90vh;
+    }
+  }
+  .mini_tab {
+    margin-top: 100px;
+    margin-bottom: 40px;
+
+    ._btn {
+      font-size: 16px;
+      margin-right: 30px;
+      opacity: 0.7;
+      cursor: pointer;
+
+      @include mobile {
+        color: #fff;
+      }
+
+      &.active {
+        font-weight: 600;
+        opacity: 1;
+      }
     }
   }
 }
