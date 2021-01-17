@@ -44,13 +44,6 @@
 import { projects } from '~/utils/projects'
 
 export default {
-  asyncData(props) {
-    console.log('Async Data>>>', props)
-  },
-  head() {
-    const projectTitle = this.project?.title || ''
-    return { title: `Orb Digital - ${projectTitle}` }
-  },
   data() {
     return {
       project: null,
@@ -60,6 +53,10 @@ export default {
     const slug = this.$route.params.slug
     const thisProject = projects.getProject(slug)
     this.project = thisProject
+  },
+  head() {
+    const projectTitle = this.project?.title || ''
+    return { title: `Orb Digital - ${projectTitle}` }
   },
 }
 </script>

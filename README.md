@@ -1,6 +1,6 @@
-# orb-digital
+# Orb Digital
 
-## Build Setup
+Orb Digital Website
 
 ```bash
 # install dependencies

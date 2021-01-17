@@ -33,16 +33,7 @@
       <div class="project_holder">
         <div
           v-for="(
-            {
-              dataClasses,
-              description,
-              title,
-              subTitles,
-              image,
-              caseLink,
-              slug,
-            },
-            index
+            { dataClasses, description, title, subTitles, image, slug }, index
           ) in projects"
           :key="index"
           class="project"
@@ -98,10 +89,7 @@
 
     <div class="social_media">
       <div class="slider">
-        <div
-          class="thumb"
-          data-animation="transform: {0: translate(0, 0), 324vh: translate(0, 190px)}"
-        ></div>
+        <div class="thumb" data-animation="top: {0: 0, 324vh:  190px}"></div>
       </div>
 
       <a href="#" class="link">
@@ -268,6 +256,7 @@ export default {
             width: 100%;
             position: relative;
             transform: translate(20%, 0);
+
             @include mobile {
               transform: translate(0);
             }
@@ -281,6 +270,12 @@ export default {
               transform: translate(100px, 0);
               overflow: hidden;
 
+              @include mobile {
+                position: unset;
+                transform: 0;
+                width: 100%;
+                margin-top: 10px;
+              }
               .tab_header {
                 background: rgb(255, 255, 255);
                 height: 30px;
@@ -320,23 +315,16 @@ export default {
                   }
                 }
               }
-
-              @include mobile {
-                position: unset;
-                transform: 0;
-                width: 100%;
-              }
               img {
                 position: absolute;
                 height: 100%;
                 top: 30px;
+
                 @include mobile {
                   position: unset;
                   width: 100%;
-                  height: 100%;
                   height: 198px;
-                  margin-top: 30px;
-                  border-radius: 6px;
+                  border-radius: 0 0 6px 6px;
                 }
               }
             }
@@ -405,6 +393,10 @@ export default {
     .arrow_container {
       bottom: 30px;
       transition: 0.3s ease-out;
+
+      @include mobile {
+        left: 0;
+      }
       &.hide {
         opacity: 0;
       }
@@ -604,7 +596,7 @@ export default {
   margin-bottom: 100px;
   opacity: 0;
   transition: 0.2s ease-out;
-  overflow: hidden;
+  overflow: visible;
 
   @include mobile {
     display: none;
