@@ -44,6 +44,13 @@
 import { projects } from '~/utils/projects'
 
 export default {
+  asyncData(props) {
+    console.log('Async Data>>>', props)
+  },
+  head() {
+    const projectTitle = this.project?.title || ''
+    return { title: `Orb Digital - ${projectTitle}` }
+  },
   data() {
     return {
       project: null,

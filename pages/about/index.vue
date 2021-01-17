@@ -5,6 +5,9 @@
 <script>
 export default {
   layout: 'grid',
+  head: {
+    title: 'Orb Digital - About',
+  },
 }
 </script>
 
