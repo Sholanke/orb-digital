@@ -5,30 +5,31 @@
         <div class="col __left">
           <h1>{{ project.title }}</h1>
           <p>
-            Website, UI/UX Design, Art Direction, Motion Design, Visual Design,
-            Iconography, Illustrations, Blockchain, Financial service, Banking,
+            <span
+              v-for="(subTitle, key) in project.subTitles"
+              :key="key"
+              class="_subTitle"
+            >
+              {{ subTitle }}
+            </span>
           </p>
           <a :href="project.website" target="_blank">Go To Website</a>
         </div>
-        <div class="col __right">
-          <p class="description">
-            About the company the project was done for. We are a
-            multi-disciplinary Digital Agency with a focus on interaction and a
-            passion for creativity. We push the limits of our mind.
+        <div v-if="project.pageContent" class="col __right">
+          <p v-if="project.pageContent.description" class="description">
+            {{ project.pageContent.description }}
           </p>
-          <span class="__spacer"></span>
-          <p class="description">
-            “We were thrilled to work with Ueno on our rebrand. We knew it would
-            be a challenge to pull off a name change and new visual identity on
-            a such a short timeline but the process the Ueno team led was very
-            efficient and extremely collaborative.”
+          <span v-if="project.pageContent.description" class="__spacer"></span>
+          <p v-if="project.pageContent.clientReview" class="description">
+            {{ project.pageContent.clientReview }}
           </p>
-
           <div class="author_info">
-            <div class="image_rapper"></div>
+            <div class="image_rapper">
+              <img :src="project.pageContent.author.image" alt="" srcset="" />
+            </div>
             <div class="text">
-              <p class="name">Firstname Lastname</p>
-              <p class="role">Designation. Company Name</p>
+              <p class="name">{{ project.pageContent.author.name }}</p>
+              <!-- <p class="role">Designation. Company Name</p> -->
             </div>
           </div>
         </div>
@@ -149,6 +150,18 @@ export default {
             text-decoration: underline;
           }
         }
+        ._subTitle {
+          margin-right: 4px;
+          display: inline-flex;
+          &:after {
+            content: ',';
+          }
+          &:last-of-type {
+            &:after {
+              content: '.';
+            }
+          }
+        }
       }
       &.__right {
         .description {
@@ -169,24 +182,25 @@ export default {
           display: flex;
           align-items: center;
           .image_rapper {
-            height: 50px;
-            width: 50px;
+            height: 40px;
             background: #c4c4c4;
             border-radius: 100vh;
             display: block;
-            background-image: url('https://images.unsplash.com/photo-1511945863317-d60e146e9016?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxjb2xsZWN0aW9uLXRodW1ibmFpbHx8MjI0OTE4OHx8ZW58MHx8fA%3D%3D&auto=format&fit=crop&w=750&q=60');
             box-shadow: 0 0 10px rgba(121, 127, 136, 0.178);
             background-size: cover;
             background-position: center;
+            img {
+              height: 100%;
+            }
           }
           .text {
             margin: 0 15px;
             .name {
               font-weight: 700;
-              font-size: 16px;
-              margin-bottom: 4px;
+              font-size: 17px;
             }
             .role {
+              margin-top: 4px;
               color: #7a7a7a;
               font-size: 14px;
             }

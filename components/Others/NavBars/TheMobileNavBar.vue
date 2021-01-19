@@ -107,6 +107,7 @@ export default {
 
 <style lang="scss" scoped>
 @import '~/assets/_mixins.scss';
+
 .mobile_nav {
   margin-left: auto;
   width: fit-content;
