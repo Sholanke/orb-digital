@@ -150,7 +150,7 @@ export default {
           @include mobile {
             color: #ffe902;
           }
-          
+
           &:hover {
             text-decoration: underline;
           }
