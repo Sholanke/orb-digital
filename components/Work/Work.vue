@@ -146,6 +146,11 @@ export default {
           text-decoration: none;
           font-weight: 900;
           font-size: 18px;
+
+          @include mobile {
+            color: #ffe902;
+          }
+          
           &:hover {
             text-decoration: underline;
           }
