@@ -12,8 +12,10 @@ const AllProjects = [
     slug: 'mallbly',
     image: '/images/projects/mallbly.png',
     pageContent: {
-      description: '',
-      clientReview: '',
+      description:
+        'Mallbly is an e-commerce platform that gives you everything you need to convert conversations to successful sale.The platform provides several tools that makes seller and customer transactions easier such as  Inventory, Messaging and Analytic features amongst others. ',
+      clientReview:
+        'We trusted Orb Digital to handle the development of our website including content creation for our site and social media pages: we got what we wanted and more. The team was easy to work with and very professional.',
       author: {
         image: '/images/icons/logo-pills/mallbly.svg',
         name: 'Oluwaseun O.',
@@ -97,7 +99,8 @@ const AllProjects = [
     pageContent: {
       description:
         'Woven Finance is a digital financial service system that provides businesses with a secure digital payments platform to receive and make payments the fastest way. Their system also includes added benefits of exceptional transaction success rates, instant settlement, and easy reconciliation.',
-      clientReview: 'Orb Digital',
+      clientReview:
+        'Orb Digital services are impeccable and we would easily recommend them as an agreeable Digital agency anytime.',
       author: {
         image: '/images/icons/logo-pills/woven.svg',
         name: 'Adedeji O.',
@@ -115,7 +118,8 @@ const AllProjects = [
     pageContent: {
       description:
         'HR Flex is  full service Human Resources solutions provider with a fourth generation Human Resources Management system built to allow organisations manage their Human capital efficiently, securely and with near to zero down-time.',
-      clientReview: 'Orb Digital',
+      clientReview:
+        'When it comes to details and creativity, Orb Digital is good for it. Timely and very efficient team of designers. We are glad to have worked with them on bringing our project to live.',
       author: {
         image: '/images/icons/logo-pills/hr-flex.svg',
         name: 'Adebayo A-S.',
