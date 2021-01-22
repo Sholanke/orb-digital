@@ -1,6 +1,6 @@
 # Orb Digital
 
-Orb Digital Website
+We are a multi-disciplinary Digital Agency with a focus on interaction and passion for creativity.
 
 ```bash
 # install dependencies
