@@ -2,11 +2,20 @@
   <div class="work_page__grid">
     <div class="__left">
       <p class="__title">Contact Us</p>
-      <form action="">
-        <Input placeholder="Your Full Name" />
-        <Input placeholder="Email Address" />
-        <Textarea placeholder="How can we help you?" />
-        <button>
+      <form @submit="submit">
+        <Input placeholder="Your Full Name" name="fullName" />
+        <Input placeholder="Email Address" name="email" />
+        <Textarea placeholder="How can we help you?" name="message" />
+        <button
+          :style="{
+            ...(loading
+              ? {
+                  opacity: 0.3,
+                  pointerEvents: 'none',
+                }
+              : {}),
+          }"
+        >
           <svg
             width="24"
             height="16"
@@ -30,11 +39,52 @@
         <strong>Tell us about your idea.</strong>
       </p>
     </div>
+    <div class="__toast" :class="{ active: formMessage }">
+      We got your message
+    </div>
   </div>
 </template>
 
 <script>
-export default {}
+import contact from '~/api/contact'
+
+export default {
+  data() {
+    return {
+      formMessage: '',
+      loading: false,
+    }
+  },
+  methods: {
+    submit(ev) {
+      ev.preventDefault()
+      this.loading = true
+      const {
+        fullName: { value: fullName },
+        email: { value: email },
+        message: { value: message },
+      } = ev.currentTarget
+
+      contact({
+        body: {
+          fullName,
+          email,
+          message,
+        },
+      })
+        .then(this.submitted)
+        .finally(() => {
+          this.loading = false
+        })
+    },
+    submitted() {
+      this.formMessage = 'Your mesage has been sent successfuly!'
+      setTimeout(() => {
+        this.formMessage = ''
+      }, 6000)
+    },
+  },
+}
 </script>
 
 <style lang="scss" scoped>
@@ -103,6 +153,7 @@ export default {}
         font-weight: 900;
         display: flex;
         align-items: center;
+        cursor: pointer;
         svg {
           margin-right: 20px;
         }
@@ -112,6 +163,29 @@ export default {}
       font-weight: 900;
       text-transform: uppercase;
       margin-bottom: 40px;
+    }
+  }
+  .__toast {
+    padding: 10px 20px;
+    background: rgb(14, 146, 84);
+    color: #fff;
+    border-radius: 4px;
+    position: fixed;
+    top: 110px;
+    left: 50%;
+    //hide
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(-50%, 20px);
+    transition: 0.2s ease-in-out;
+    box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.25);
+    text-align: center;
+    &.active {
+      display: block;
+      //show
+      opacity: 1;
+      pointer-events: unset;
+      transform: translate(-50%, 0);
     }
   }
 }

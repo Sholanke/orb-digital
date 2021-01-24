@@ -1,6 +1,6 @@
 <template>
   <div class="textarea">
-    <textarea rows="4" :placeholder="placeholder" />
+    <textarea rows="4" :placeholder="placeholder" :name="name" />
   </div>
 </template>
 
@@ -12,6 +12,13 @@ export default {
       type: String,
       default() {
         return 'Type here'
+      },
+    },
+    name: {
+      required: false,
+      type: String,
+      default() {
+        return ''
       },
     },
   },

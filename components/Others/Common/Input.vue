@@ -1,6 +1,6 @@
 <template>
   <div class="input">
-    <input :placeholder="placeholder" required />
+    <input :placeholder="placeholder" :name="name" required />
   </div>
 </template>
 
@@ -13,6 +13,10 @@ export default {
       default() {
         return 'Type here'
       },
+    },
+    name: {
+      required: true,
+      type: String,
     },
   },
 }
