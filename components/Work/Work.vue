@@ -186,9 +186,9 @@ export default {
         .author_info {
           display: flex;
           align-items: center;
+
           .image_rapper {
             height: 40px;
-            background: #c4c4c4;
             border-radius: 100vh;
             display: block;
             box-shadow: 0 0 10px rgba(121, 127, 136, 0.178);

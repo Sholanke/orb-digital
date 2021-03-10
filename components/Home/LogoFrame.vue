@@ -1,10 +1,5 @@
 <template>
-  <div
-    class="logo__frame"
-    data-sticky="from: 0, duration: 350vh"
-    data-classes="8vh: { add: frame_2 }"
-    :data-frame="frame"
-  >
+  <div class="logo__frame" :data-frame="frame >= 2 ? 2 : frame">
     <div class="rect__bg anime">
       <div v-for="i in 160" :key="i" class="box"></div>
     </div>
@@ -33,11 +28,11 @@
       <div class="project_holder">
         <div
           v-for="(
-            { dataClasses, description, title, subTitles, image, slug }, index
+            { description, title, subTitles, image, slug }, index
           ) in projects"
           :key="index"
           class="project"
-          :data-classes="dataClasses"
+          :class="frame === index + 2 ? 'active' : ''"
         >
           <div class="__left">
             <h2 class="title content">{{ title }}</h2>
@@ -81,17 +76,18 @@
           </div>
         </div>
       </div>
-      <div
-        class="content arrow_container"
-        data-classes="230vh : { add : hide }"
-      >
+      <div class="content arrow_container">
         <Arrow />
       </div>
     </div>
 
     <div class="social_media">
       <div class="slider">
-        <div class="thumb" data-animation="top: {0: 0, 324vh:  190px}"></div>
+        <div
+          class="thumb"
+          :data-frame="frame"
+          :style="{ top: `${sliderPos}px` }"
+        ></div>
       </div>
 
       <a href="#" class="link">
@@ -117,7 +113,7 @@
 import Logo from '~/components/Logo'
 import Arrow from '~/components/Home/LogoFrameScrollArrow'
 import TheNavBar from '~/components/Others/NavBars/TheNavBar'
-import { projects } from '~/utils/projects'
+import { projects, debouncer, wheelDirection } from '~/utils/projects'
 
 export default {
   components: { Logo, Arrow, TheNavBar },
@@ -127,20 +123,45 @@ export default {
       projects: projects.all,
     }
   },
+  computed: {
+    sliderPos() {
+      let position = 190 * ((this.frame - 2) / (this.projects.length - 1))
+      position = position === Infinity ? 0 : position
+      return position
+    },
+  },
   mounted() {
     document.querySelector('body').style.overflow = 'hidden'
     setTimeout(() => {
-      document.querySelector('body').style.overflow = 'unset'
       this.updateFrame(1)
-      projects.initControls()
+      projects.initControls(this.goToNextProject, this.goToPrevProject)
     }, 1000)
     this.$once('hook:beforeDestroy', () => {
       projects.stopControls()
+      document.querySelector('body').style.overflow = 'unset'
+    })
+
+    const debouncedHandler = debouncer((e) => {
+      wheelDirection(e) === 'next'
+        ? this.goToNextProject()
+        : this.goToPrevProject()
+    }, 100)
+
+    window.addEventListener('wheel', (e) => {
+      debouncedHandler(e)
     })
   },
   methods: {
     updateFrame(frame) {
       this.frame = frame
+    },
+    goToNextProject() {
+      this.updateFrame(
+        this.frame <= this.projects.length ? this.frame + 1 : this.frame
+      )
+    },
+    goToPrevProject() {
+      this.updateFrame(this.frame > 1 ? this.frame - 1 : this.frame)
     },
   },
 }
@@ -610,6 +631,7 @@ export default {
     background: #ffe801;
     height: 60px;
     position: relative;
+    transition: 0.2s ease;
     will-change: transform;
   }
 }

@@ -1,5 +1,24 @@
 const AllProjects = [
   {
+    title: 'LendSqr.',
+    website: 'https://lendsqr.com/',
+    subTitles: ['Website ( User Interface and Experience Design)'],
+    dataClasses: '200vh : { add: active }, 250vh : { remove : active }',
+    workImage: 'lendsqr.png',
+    slug: 'lendsqr',
+    image: '/images/projects/lendsqr.png',
+    pageContent: {
+      description: `Lendsqr is a platform that helps it's customers with end-end digital lending solutions. Configure, manage and optimize your processes using our real-time solutions and technologies that will have a profound impact on your business.`,
+      clientReview:
+        'Orb Digital services are impeccable and we would easily recommend them as an agreeable Digital agency anytime.',
+      author: {
+        image: '/images/icons/logo-pills/lendsqr.svg',
+        name: 'Adedeji O.',
+      },
+    },
+  },
+
+  {
     title: 'Mallbly.',
     website: 'https://mallbly.com/',
     subTitles: [
@@ -147,9 +166,39 @@ const AllProjects = [
   },
 ]
 
-const _handleKeyDown = ({ keyCode }) => {
-  if (keyCode === 37) projects.goToPreviousProject()
-  else if (keyCode === 39) projects.goToNextProject()
+const _handleKeyDown = ({ keyCode }, nextFn, prevFn) => {
+  const nextKeyCodes = [40, 39]
+  const prevKeyCodes = [37, 38]
+
+  if (nextKeyCodes.includes(keyCode)) nextFn()
+  else if (prevKeyCodes.includes(keyCode)) prevFn()
+}
+
+export function debouncer(fn, DEBOUNCER_TIME_OUT) {
+  let timeOut
+  let alreadyRanOnUpdate = false
+
+  function setAlreadyRanOnUpdate(bool) {
+    alreadyRanOnUpdate = bool
+  }
+
+  const fnCaller = (args) => {
+    clearTimeout(timeOut)
+
+    !alreadyRanOnUpdate && fn(args)
+
+    setAlreadyRanOnUpdate(true)
+
+    timeOut = setTimeout(() => {
+      setAlreadyRanOnUpdate(false)
+    }, DEBOUNCER_TIME_OUT)
+  }
+
+  return fnCaller
+}
+
+export function wheelDirection(event) {
+  return event.deltaY >= 0 ? 'next' : 'prev'
 }
 
 const projects = {
@@ -172,23 +221,14 @@ const projects = {
   homePageIsActive() {
     return this.$route.path === '/'
   },
-  goToNextProject() {
-    window.scrollBy(0, 0.5 * window.innerHeight)
-  },
-  goToPreviousProject() {
-    window.scrollBy(0, -(0.5 * window.innerHeight))
-  },
-  initControls() {
-    window.addEventListener('keydown', _handleKeyDown)
+  initControls(nextFn, leftFn) {
+    window.addEventListener('keydown', (e) => {
+      _handleKeyDown(e, nextFn, leftFn)
+    })
   },
   stopControls() {
     window.removeEventListener('keydown', _handleKeyDown)
   },
 }
-
-// left = 37
-// up = 38
-// right = 39
-// down = 40
 
 export { projects }
