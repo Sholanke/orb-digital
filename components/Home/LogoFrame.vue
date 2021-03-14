@@ -531,14 +531,18 @@ export default {
       height: 100vh !important;
       width: 100vw !important;
       border-radius: 0;
+
       @include mobile {
         top: 0 !important;
+        left: 0 !important;
+        transform: translate(0, 0) !important;
       }
     }
     .logo__holder {
       left: 4vw !important;
       top: 0 !important;
       transform: translate(-35%, -30%) scale(0.245) !important;
+
       @include mobile {
         transform: translate(-35%, -30%) scale(0.175) !important;
       }
