@@ -8,7 +8,7 @@ const AllProjects = [
     slug: 'lendsqr',
     image: '/images/projects/lendsqr.png',
     pageContent: {
-      description: `Lendsqr is a platform that helps it's customers with end-end digital lending solutions. Configure, manage and optimize your processes using our real-time solutions and technologies that will have a profound impact on your business.`,
+      description: `Lendsqr is a digital marketplace that brings lenders and borrowers together. Their mission is to simplify the lending process and its an easy, busy sophisticated technology that can guarantee an awesome lending experience. Client review-  Working with the Orb Digital team was a worthwhile experience.  Great work ethics and expertise`,
       clientReview:
         'Orb Digital services are impeccable and we would easily recommend them as an agreeable Digital agency anytime.',
       author: {
