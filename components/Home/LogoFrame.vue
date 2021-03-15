@@ -288,7 +288,7 @@ export default {
             }
             .__image_rapper__img {
               height: 100%;
-              width: 1000px;
+              width: 800px;
               display: block;
               position: absolute;
               left: 0;
@@ -344,6 +344,7 @@ export default {
               img {
                 position: absolute;
                 height: 100%;
+                width: 100%;
                 top: 30px;
 
                 @include mobile {

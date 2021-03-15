@@ -1,8 +1,8 @@
 const AllProjects = [
   {
-    title: 'LendSqr.',
+    title: 'LendSqr',
     website: 'https://lendsqr.com/',
-    subTitles: ['Website ( User Interface and Experience Design)'],
+    subTitles: ['Website Development'],
     dataClasses: '200vh : { add: active }, 250vh : { remove : active }',
     workImage: 'lendsqr.png',
     slug: 'lendsqr',
@@ -19,7 +19,7 @@ const AllProjects = [
   },
 
   {
-    title: 'Mallbly.',
+    title: 'Mallbly',
     website: 'https://mallbly.com/',
     subTitles: [
       'Website Development',
@@ -42,7 +42,7 @@ const AllProjects = [
     },
   },
   {
-    title: 'Babelos.',
+    title: 'Babelos',
     website: 'https://babelos.net/',
     subTitles: ['Website Development'],
     dataClasses: '50vh : { add: active }, 100vh : { remove : active }',
@@ -61,7 +61,7 @@ const AllProjects = [
     },
   },
   {
-    title: 'Jollof Republik.',
+    title: 'Jollof Republik',
     website: 'https://jollof-republik.netlify.app/',
     subTitles: [
       'Website Development',
@@ -84,7 +84,7 @@ const AllProjects = [
     },
   },
   {
-    title: 'P2Vest.',
+    title: 'P2Vest',
     website: 'http://p2vest.com/',
     subTitles: [
       'Website Development',
@@ -108,7 +108,7 @@ const AllProjects = [
     },
   },
   {
-    title: 'Woven Finance.',
+    title: 'Woven Finance',
     website: 'https://woven.finance/',
     subTitles: ['Website ( User Interface and Experience Design)'],
     dataClasses: '200vh : { add: active }, 250vh : { remove : active }',
@@ -127,7 +127,7 @@ const AllProjects = [
     },
   },
   {
-    title: 'HR Flex.',
+    title: 'HR Flex',
     website: 'http://hr-flex.com/',
     subTitles: ['Website Development'],
     dataClasses: '250vh : { add: active }, 300vh : { remove : active }',
@@ -146,7 +146,7 @@ const AllProjects = [
     },
   },
   {
-    title: 'F. O. Akinrele.',
+    title: 'F. O. Akinrele',
     website: 'http://foa-web.netlify.app/',
     subTitles: ['Website Development'],
     dataClasses: '300vh : { add: active }',
